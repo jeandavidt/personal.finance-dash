@@ -6,7 +6,7 @@ from src.components.layout import create_layout
 from src.data.loader import load_transaction_data
 from src.data.source import DataSource
 
-LOCALE = "nl"
+LOCALE = "en"
 DATA_PATH = "./data/transactions.csv"
 
 
@@ -18,11 +18,11 @@ def main() -> None:
 
     # load the data and create the data manager
     data = load_transaction_data(DATA_PATH, LOCALE)
-    data = DataSource(data)
+    source = DataSource(data)
 
     app = Dash(external_stylesheets=[BOOTSTRAP])
     app.title = i18n.t("general.app_title")
-    app.layout = create_layout(app, data)
+    app.layout = create_layout(app, source)
     app.run()
 
 
